@@ -3,6 +3,8 @@ package eu.waldonia.labs;
 import java.io.File;
 import java.io.FilenameFilter;
 
+import eu.waldonia.labs.fits.dal.RedisLightCurveDataService;
+
 import nom.tam.fits.Fits;
 
 /**
@@ -20,7 +22,6 @@ public class FITDirectoryTraverser {
      * @return the number of files successfully processed by the supplied command
      */
     public int traverse(FITFileCommand command) {
-	
 	int successfullyProcessed = 0;
 	if (null != imageDir) {
 	    
@@ -37,7 +38,7 @@ public class FITDirectoryTraverser {
 		for (int i = 0; i < fitFiles.length; i++) {
 		    try {
 			Fits f = new Fits(fitFiles[i]);
-			command.process(f);
+			command.process(f, fitFiles[i]);
 			successfullyProcessed++;
 		    } 
 		    catch (Exception e) {
@@ -57,7 +58,6 @@ public class FITDirectoryTraverser {
     public void setImageDir(String imageDir) {
         this.imageDir = imageDir;
     }
-    
-    
+
     
 }

@@ -1,5 +1,7 @@
 package eu.waldonia.labs;
 
+import java.io.File;
+
 import nom.tam.fits.Fits;
 
 /**
@@ -10,8 +12,9 @@ import nom.tam.fits.Fits;
 public interface FITFileCommand {
     
     /**
-     * @param f The DirectoryTraveresr will call the process method on the command it's passed
+     * @param fits The DirectoryTraveresr will call the process method on the command it's passed
+     * @param file The file containing the data
      */
-    public void process(Fits f) throws Exception;
+    public void process(Fits fits, File file) throws Exception;
 
 }
